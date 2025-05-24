@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Caesar Cipher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            margin: 40px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        textarea, input[type=number], input[type=submit] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Caesar Cipher - Mã hóa & Giải mã</h2>
+        <form method="POST">
+            <label for="text">Văn bản:</label>
+            <textarea name="text" id="text" required>{{ text or '' }}</textarea>
+
+            <label for="key">Khóa (Shift):</label>
+            <input type="number" name="key" id="key" value="{{ key or 0 }}" required>
+
+            <input type="submit" name="action" value="encrypt">
+            <input type="submit" name="action" value="decrypt">
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <p>Kết quả ({{ 'Mã hóa' if action == 'encrypt' else 'Giải mã' }}):</p>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
