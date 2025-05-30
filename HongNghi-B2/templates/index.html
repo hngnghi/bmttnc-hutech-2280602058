@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Caesar Cipher</title>
+    <title>Caesar & Vigenere Cipher</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,7 +10,7 @@
             margin: 40px;
         }
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
         }
         h2 {
@@ -20,13 +20,13 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         label {
             display: block;
             margin-top: 12px;
         }
-        textarea, input[type=number], input[type=submit] {
+        textarea, input[type=number], input[type=text], input[type=submit] {
             width: 100%;
             padding: 10px;
             margin-top: 6px;
@@ -44,21 +44,41 @@
 <body>
     <div class="container">
         <h2>Caesar Cipher - Mã hóa & Giải mã</h2>
-        <form method="POST">
+        <form method="POST" action="/caesar">
             <label for="text">Văn bản:</label>
-            <textarea name="text" id="text" required>{{ text or '' }}</textarea>
+            <textarea name="text" id="text" required>{{ caesar_text or '' }}</textarea>
 
             <label for="key">Khóa (Shift):</label>
-            <input type="number" name="key" id="key" value="{{ key or 0 }}" required>
+            <input type="number" name="key" id="key" value="{{ caesar_key or 0 }}" required>
 
-            <input type="submit" name="action" value="encrypt">
-            <input type="submit" name="action" value="decrypt">
+            <input type="submit" name="action" value="encrypt_caesar">
+            <input type="submit" name="action" value="decrypt_caesar">
         </form>
 
-        {% if result %}
+        {% if caesar_result %}
         <div class="result">
-            <p>Kết quả ({{ 'Mã hóa' if action == 'encrypt' else 'Giải mã' }}):</p>
-            <p>{{ result }}</p>
+            <p>Kết quả Caesar ({{ 'Mã hóa' if caesar_action == 'encrypt_caesar' else 'Giải mã' }}):</p>
+            <p>{{ caesar_result }}</p>
+        </div>
+        {% endif %}
+
+        <h2>Vigenere Cipher - Mã hóa & Giải mã</h2>
+        <form method="POST" action="/vigenere">
+            <label for="vig_text">Văn bản:</label>
+            <textarea name="text" id="vig_text" required>{{ vigenere_text or '' }}</textarea>
+
+            <label for="vig_key">Khóa (Từ khóa):</label>
+            <input type="text" name="key" id="vig_key" value="{{ key or '' }}" required>
+
+
+            <input type="submit" name="action" value="encrypt_vigenere">
+            <input type="submit" name="action" value="decrypt_vigenere">
+        </form>
+
+        {% if vigenere_result %}
+        <div class="result">
+            <p>Kết quả Vigenere ({{ 'Mã hóa' if vigenere_action == 'encrypt_vigenere' else 'Giải mã' }}):</p>
+            <p>{{ vigenere_result }}</p>
         </div>
         {% endif %}
     </div>
