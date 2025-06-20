@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Blockchain Demo</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+    }
+    .block {
+      border: 2px solid #4CAF50;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: #f4fdf4;
+      border-radius: 8px;
+    }
+    .block h3 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
+    .block p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>⛓️ Chuỗi Blockchain</h2>
+  {% for block in chain %}
+    <div class="block">
+      <h3>🔢 Block #{{ block.index }}</h3>
+      <p><strong>📦 Giao dịch:</strong> {{ block.transactions }}</p>
+      <p><strong>🔗 Hash:</strong> {{ block.hash }}</p>
+    </div>
+  {% endfor %}
+  <br><br>
+<a href="/">⬅️ Quay lại trang chủ</a>
+</body>
+</html>

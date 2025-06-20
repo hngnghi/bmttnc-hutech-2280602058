@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>🎬 Steganography - Video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    form {
+      margin-top: 15px;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      width: 450px;
+    }
+    input[type="file"],
+    input[type="text"] {
+      margin: 8px 0;
+      width: 100%;
+      padding: 8px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 16px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #e8f5e9;
+      border-left: 4px solid #4CAF50;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎬 Giấu hoặc giải mã thông điệp trong video</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    <label>📁 Chọn video (.mp4):</label><br>
+    <input type="file" name="video" required><br>
+
+    <label>💬 Thông điệp (khi giấu):</label><br>
+    <input type="text" name="message" placeholder="Nhập thông điệp cần giấu (tùy chọn khi giải mã)"><br>
+
+    <button type="submit" name="hide">🔐 Giấu tin</button>
+    <button type="submit" name="reveal">🔍 Giải mã</button>
+  </form>
+
+  {% if result %}
+    <div class="result">
+      <strong>📨 Thông điệp được giải mã:</strong><br>
+      {{ result }}
+    </div>
+  {% endif %}
+    <br><br>
+    <a href="/">⬅️ Quay lại trang chủ</a>
+</body>
+</html>
